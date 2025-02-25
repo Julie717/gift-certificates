@@ -1,0 +1,8 @@
+dependencies {
+    implementation project(":service")
+}
+
+bootJar {
+    mainClass = 'com.project.sa.GiftCertificatesApplication'
+    baseName "gift-certificates"
+}
