@@ -27,6 +27,7 @@ allprojects {
         implementation ("org.springframework.boot:spring-boot-starter")
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-hateoas")
+        implementation("org.springframework.boot:spring-boot-starter-actuator")
         testImplementation ("org.springframework.boot:spring-boot-starter-test")
         implementation("org.projectlombok:lombok:${lombokVersion}")
         annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
@@ -34,25 +35,29 @@ allprojects {
         implementation("javax.validation:validation-api:${javaxValidationVersion}")
         implementation("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
     }
+    test {
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport
+    }
+
+    jacocoTestReport {
+        reports {
+            csv.enabled false
+            html.enabled false
+            xml.enabled true
+            xml.destination file("${buildDir}/jacocoTest/coverage.xml")
+        }
+        dependsOn test
+    }
+
+    jacoco {
+        toolVersion = "0.8.6"
+    }
 }
 
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    reports {
-        csv.enabled false
-        html.enabled false
-        xml.enabled true
-        xml.destination file("${buildDir}/jacocoTest/coverage.xml")
-    }
-    dependsOn test
-}
-
-jacoco {
-    toolVersion = "0.8.6"
 }
 
 configurations {
