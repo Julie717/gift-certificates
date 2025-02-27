@@ -33,7 +33,6 @@ allprojects {
         implementation("javax.servlet:javax.servlet-api:${servletVersion}")
         implementation("javax.validation:validation-api:${javaxValidationVersion}")
         implementation("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
-        implementation ("org.liquibase:liquibase-core:${liquibaseVersion}")
     }
     test {
         useJUnitPlatform()
