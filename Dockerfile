@@ -9,7 +9,7 @@ WORKDIR $APP_HOME
 COPY --from=image_build $APP_HOME .
 RUN gradle test
 
-FROM openjdk:8
+FROM openjdk:8 AS container_run
 ENV JAR_NAME=gift-certificates-1.0.0.jar
 ENV APP_HOME=/home/user/Modules-MJS-School/web
 WORKDIR $APP_HOME
