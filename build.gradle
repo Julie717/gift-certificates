@@ -33,26 +33,26 @@ allprojects {
         implementation("javax.servlet:javax.servlet-api:${servletVersion}")
         implementation("javax.validation:validation-api:${javaxValidationVersion}")
         implementation("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
+        implementation ("org.liquibase:liquibase-core:${liquibaseVersion}")
     }
-}
-
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
-}
-
-jacocoTestReport {
-    reports {
-        csv.enabled false
-        html.enabled false
-        xml.enabled true
-        xml.destination file("${buildDir}/jacocoTest/coverage.xml")
+    test {
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport
     }
-    dependsOn test
-}
 
-jacoco {
-    toolVersion = "0.8.6"
+    jacocoTestReport {
+        reports {
+            csv.enabled false
+            html.enabled false
+            xml.enabled true
+            xml.destination file("${buildDir}/jacocoTest/coverage.xml")
+        }
+        dependsOn test
+    }
+
+    jacoco {
+        toolVersion = "0.8.6"
+    }
 }
 
 configurations {
