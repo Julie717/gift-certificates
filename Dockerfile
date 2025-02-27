@@ -3,16 +3,16 @@ WORKDIR /home/user/Modules-MJS-School/web
 COPY . .
 RUN gradle build -x test
 
-FROM gradle:6.7.1-jdk8-hotspot AS test
-ENV APP_HOME=/home/user/Modules-MJS-School/web
-WORKDIR $APP_HOME
-COPY --from=image_build $APP_HOME .
-RUN gradle test
-
-FROM openjdk:8 AS container_run
+FROM openjdk:8
 ENV JAR_NAME=gift-certificates-1.0.0.jar
 ENV APP_HOME=/home/user/Modules-MJS-School/web
 WORKDIR $APP_HOME
 COPY --from=image_build $APP_HOME .
 EXPOSE 8080
 ENTRYPOINT ["sh", "-c", "java -jar $APP_HOME/build/libs/$JAR_NAME --spring.datasource.url=${DB_URL} --spring.datasource.username=${DB_USERNAME} --spring.datasource.password={DB_PASSWORD}"]
+
+FROM gradle:6.7.1-jdk8-hotspot AS test
+ENV APP_HOME=/home/user/Modules-MJS-School/web
+WORKDIR $APP_HOME
+COPY --from=image_build $APP_HOME .
+RUN gradle test
