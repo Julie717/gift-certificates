@@ -15,4 +15,4 @@ ENV APP_HOME=/home/user/Modules-MJS-School/web
 WORKDIR $APP_HOME
 COPY --from=image_build $APP_HOME .
 EXPOSE 8080
-ENTRYPOINT ["sh", "-c", "java -jar $APP_HOME/build/libs/$JAR_NAME"]
+ENTRYPOINT ["sh", "-c", "java -jar $APP_HOME/build/libs/$JAR_NAME --spring.datasource.url=${DB_URL} --spring.datasource.username=${DB_USERNAME} --spring.datasource.password={DB_PASSWORD}"]
