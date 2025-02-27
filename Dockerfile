@@ -6,7 +6,7 @@ RUN gradle build -x test
 FROM gradle:6.7.1-jdk8-hotspot AS test
 ENV APP_HOME=/home/user/Modules-MJS-School/web
 WORKDIR $APP_HOME
-COPY --from=image_build $APP_HOME .
+COPY --from=builder $APP_HOME .
 RUN gradle test
 
 FROM openjdk:8
