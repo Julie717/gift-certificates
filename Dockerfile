@@ -1,8 +1,7 @@
 FROM gradle:6.7.1-jdk8-hotspot AS builder
 WORKDIR /home/user/gift-certificates
 COPY . .
-RUN gradle clean
-RUN gradle build -x test
+RUN gradle clean build -x test
 
 FROM gradle:6.7.1-jdk8-hotspot AS test
 ENV APP_HOME=/home/user/gift-certificates
