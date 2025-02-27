@@ -1,12 +1,11 @@
 FROM gradle:6.7.1-jdk8-hotspot AS builder
-WORKDIR /home/user/Modules-MJS-School/web
+WORKDIR /home/user/gift-certificates/web
 COPY . .
 RUN gradle build -x test
 
 FROM gradle:6.7.1-jdk8-hotspot AS test
-ENV APP_HOME=/home/user/Modules-MJS-School/web
 WORKDIR $APP_HOME
-COPY --from=builder $APP_HOME .
+COPY --from=builder . .
 RUN gradle test
 
 FROM openjdk:8
