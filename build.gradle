@@ -54,6 +54,11 @@ allprojects {
     }
 }
 
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
 configurations {
     compile.exclude module: 'spring-boot-starter-logging'
 }
