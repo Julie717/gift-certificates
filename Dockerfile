@@ -15,4 +15,4 @@ ENV APP_HOME=/home/user/gift-certificates/web
 WORKDIR $APP_HOME
 COPY --from=builder $APP_HOME .
 EXPOSE 8080
-ENTRYPOINT ["sh", "-c", "java -jar $APP_HOME/build/libs/$JAR_NAME --spring.datasource.url="jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8&auth_plugin=mysql_native_password" --spring.datasource.username=${DB_USERNAME} --spring.datasource.password=${DB_PASSWORD}"]
+ENTRYPOINT ["sh", "-c", "java -jar $APP_HOME/build/libs/$JAR_NAME --spring.datasource.url=${DB_URL} --spring.datasource.username=${DB_USERNAME} --spring.datasource.password=${DB_PASSWORD}"]
