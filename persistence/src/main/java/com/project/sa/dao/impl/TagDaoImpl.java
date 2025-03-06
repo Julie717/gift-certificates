@@ -65,6 +65,7 @@ public class TagDaoImpl implements TagDao {
 
     @Override
     public Tag add(Tag tag) {
+        log.debug("Going to add new tag");
         entityManager.persist(tag);
         return tag;
     }
